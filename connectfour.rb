@@ -207,7 +207,7 @@ def checkboard(board, win)
     token = ""    
     board[0].length.times do |col|
       break if row-col < 0 
-      cell = board[row-col][col]
+      cell = board[row-col][board[0].length-col]
       if cell.nil?
         count = 0
         token = ""
