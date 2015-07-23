@@ -1,4 +1,4 @@
-class @board
+class Board
   def initialize(width, height, win)
     @width = width
     @height = height
@@ -16,15 +16,7 @@ class @board
     @win
   end
 
-  def get_cell(row,col)
-    @board[row][col]
-  end
-
-  def set_cell(row,col,token)
-    @board[row][col] = token
-  end
-
-  def print
+  def print_board
     @board.each do | row |
       row.each do | col |
         print "[" + ( col.nil? ? " " : col ) + "]"
@@ -34,8 +26,8 @@ class @board
   end
 
   def validmove?(move)
-    return false if ( move < 1 || move > @board.width )
-    return false if ( !board.cell(0,move-1).nil? )
+    return false if ( move < 1 || move > @width )
+    return false if ( !@board[0][move-1].nil? )
     return true
   end
 
@@ -51,7 +43,6 @@ class @board
       end
     end
   end
-
 
   def check
     #row check
@@ -76,10 +67,10 @@ class @board
     end
 
     #col check
-    @board[0].length.times do |col|
+    @width.times do |col|
       count = 0
       token = ""    
-      @board.length.times do |row|
+      @height.times do |row|
         cell = @board[row][col]
         if cell.nil?
           count = 0

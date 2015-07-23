@@ -1,4 +1,5 @@
-require 'board'
+require './board'
+
 def new_game
   system 'cls'
   puts "Please Enter Board Width [7-15]"
@@ -29,12 +30,12 @@ def new_game
   game = "new"
   while game != "over"
     system 'cls'
-    board.print
+    board.print_board
     puts "Player #{turn%2+1}'s turn."
     move = gets.chomp.to_i
     while ( !board.validmove?(move) )
       system 'cls'
-      board.print
+      board.print_board
       puts "Player #{turn%2+1}'s turn."
       puts "Please Enter a Valid Move."
       move = gets.chomp.to_i
@@ -43,17 +44,17 @@ def new_game
     case board.check
       when "X"
         system 'cls'
-        board.print
+        board.print_board
         puts "Player 1 Wins"
         game = "over"
       when "O"
         system 'cls'
-        board.print
+        board.print_board
         puts "Player 2 Wins"
         game = "over"
       when "draw"
         system 'cls'
-        board.print
+        board.print_board
         puts "Draw Game"
         game = "over"
       else
