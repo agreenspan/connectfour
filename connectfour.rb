@@ -1,3 +1,4 @@
+require 'board'
 def new_game
   system 'cls'
   puts "Please Enter Board Width [7-15]"
@@ -39,7 +40,6 @@ def new_game
       move = gets.chomp.to_i
     end
     board.place(turn%2+1, move)
-
     case board.check
       when "X"
         system 'cls'
