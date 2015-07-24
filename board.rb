@@ -16,6 +16,11 @@ class Board
     @win
   end
 
+  #for testing
+  def set_board(array)
+    @board = array
+  end
+
   def print_board
     @board.each do | row |
       row.each do | col |
@@ -90,10 +95,10 @@ class Board
 
     #backslash diag check
     #width diagonals
-    (@board[0].length).times do |col|
+    @width.times do |col|
       count = 0
       token = ""    
-      @board.length.times do |row|
+      @height.times do |row|
         break if col+row > @board[0].length-1
         cell = @board[row][col+row]
         if cell.nil?
@@ -112,10 +117,10 @@ class Board
       end
     end
     #height diagonals
-    for row in (1..@board.length-1) do
+    for row in (1..@height-1) do
       count = 0
       token = ""    
-      @board[0].length.times do |col|
+      @width.times do |col|
         break if col+row > @board.length-1 
         cell = @board[row+col][col]
         if cell.nil?
@@ -136,11 +141,11 @@ class Board
 
     #forwardslash diag check
     #width diagonals
-    (@board[0].length).times do |col|
+    @width.times do |col|
       count = 0
       token = ""    
-      @board.length.times do |row|
-        break if col-row < 0 
+      @height.times do |row|
+        break if col-row < 0
         cell = @board[row][col-row]
         if cell.nil?
           count = 0
@@ -154,15 +159,16 @@ class Board
           token = cell
           count = 1     
         end
+        return token if count >= win
       end
     end
     #height diagonals
-    for row in (1..@board.length-1) do
+    for row in (1..@height-1) do
       count = 0
       token = ""    
-      @board[0].length.times do |col|
-        break if row+col > @board.length-1 
-        cell = @board[row+col][@board[0].length-col]
+      @width.times do |col|
+        break if col+row > @board.length-1 
+        cell = @board[row+col][@width-col-1]
         if cell.nil?
           count = 0
           token = ""
