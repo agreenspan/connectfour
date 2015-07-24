@@ -13,8 +13,23 @@ describe Board do
             [nil,nil,nil,nil,nil,nil,nil],
             [nil,nil,nil,nil,nil,nil,nil]
           ])
-    for move in (1..board.width) do 
+    for move in (1..board.width+1) do 
       expect(board.validmove?(move)).to eq(false)
+    end
+  end
+
+  it "is valid move" do
+    board = Board.new(7,6,4)
+    board.set_board( [
+            [nil,nil,nil,nil,nil,nil,nil],
+            [nil,nil,nil,nil,nil,nil,nil],
+            [nil,nil,nil,nil,nil,nil,nil],
+            [nil,nil,nil,nil,nil,nil,nil],
+            [nil,nil,nil,nil,nil,nil,nil],
+            [nil,nil,nil,nil,nil,nil,nil]
+          ])
+    for move in (1..board.width) do 
+      expect(board.validmove?(move)).to eq(true)
     end
   end
 
@@ -44,7 +59,6 @@ describe Board do
   end
   it "p1 win" do
     board = Board.new(7,6,4)
-
     board.set_board( [
             [nil,nil,nil,nil,nil,nil,nil],
             [nil,nil,nil,nil,nil,nil,nil],
@@ -57,7 +71,6 @@ describe Board do
   end
   it "p2 win" do
     board = Board.new(7,6,4)
-
     board.set_board( [
             [nil,nil,nil,nil,nil,nil,nil],
             [nil,nil,nil,nil,nil,nil,nil],
@@ -70,7 +83,6 @@ describe Board do
   end
   it "v win top-left" do
     board = Board.new(7,6,4)
-
     board.set_board( [
             ["X",nil,nil,nil,nil,nil,nil],
             ["X",nil,nil,nil,nil,nil,nil],
@@ -83,7 +95,6 @@ describe Board do
   end
   it "v win middle-left" do
     board = Board.new(7,6,4)
-
     board.set_board( [
             [nil,nil,nil,nil,nil,nil,nil],
             ["X",nil,nil,nil,nil,nil,nil],
